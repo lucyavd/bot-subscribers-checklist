@@ -1,0 +1,10 @@
+# Add these directives INSIDE the existing checklist.avdeeva-ludmila.ru site block,
+# ABOVE its final catch-all `handle` block. Do not replace the other routes.
+@botSubscribersRoot path /bot-subscribers
+redir @botSubscribersRoot /bot-subscribers/ 308
+
+handle_path /bot-subscribers/* {
+    root * /opt/checklists/bot-subscribers/dist
+    try_files {path} /index.html
+    file_server
+}
