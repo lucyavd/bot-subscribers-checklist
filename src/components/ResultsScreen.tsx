@@ -19,20 +19,20 @@ export default function ResultsScreen({ selectedItems, onRestart }: ResultsScree
   const main = diagnosis.priority;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-6 md:py-12">
-      <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
-        <header className="bg-gradient-to-br from-violet-800 via-violet-700 to-indigo-800 p-6 text-white md:p-9">
+    <main className="journey-page mx-auto max-w-3xl px-4 py-6 md:py-12">
+      <div className="journey-surface overflow-hidden rounded-[28px] bg-white">
+        <header className="journey-results-hero relative overflow-hidden p-6 md:p-9">
           <button type="button" onClick={onRestart}
-            className="mb-5 inline-flex items-center gap-2 rounded-lg px-1 py-1 text-sm text-violet-100 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+            className="mb-5 inline-flex items-center gap-2 rounded-lg px-1 py-1 text-sm font-semibold text-[#6542ac] hover:text-[#40257c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-700">
             <ArrowLeft size={18} aria-hidden="true" /> Изменить ответы
           </button>
-          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-violet-100">
+          <div className="mb-2 flex items-center gap-2 text-sm font-bold text-[#7250b5]">
             <Sparkles size={19} aria-hidden="true" /> Твой результат
           </div>
-          <h1 className="font-serif text-3xl font-bold leading-tight md:text-4xl">
+          <h1 className="max-w-xl font-serif text-3xl font-bold leading-tight text-[#33275a] md:text-4xl">
             {count === 0 ? 'Знакомые проблемы не отмечены' : 'Ты отметила ' + count + ' из 5 ситуаций'}
           </h1>
-          <p className="mt-3 max-w-xl leading-relaxed text-violet-100">
+          <p className="mt-3 max-w-xl leading-relaxed text-[#675884]">
             {count === 0
               ? 'Посмотри, на что ещё обратить внимание, и забери идеи для своего бота.'
               : 'Ниже — возможные причины и примеры исправлений. Начни с одной ситуации, не меняй всё сразу.'}
@@ -40,7 +40,7 @@ export default function ResultsScreen({ selectedItems, onRestart }: ResultsScree
         </header>
 
         <div className="space-y-6 p-5 md:p-8">
-          <section className="rounded-2xl border border-violet-200 bg-violet-50 p-5 md:p-7">
+          <section className="journey-result-card rounded-2xl border p-5 md:p-7">
             <p className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-violet-800">
               <ListChecks size={18} aria-hidden="true" /> Самопроверка
             </p>
@@ -55,7 +55,7 @@ export default function ResultsScreen({ selectedItems, onRestart }: ResultsScree
             )}
           </section>
 
-          <section className="relative overflow-hidden rounded-2xl border border-violet-200 bg-white p-5 shadow-sm md:p-7">
+          <section className="journey-invite-card relative overflow-hidden rounded-2xl border bg-white p-5 md:p-7">
             <div className="mb-4 inline-flex rounded-xl bg-violet-100 p-2 text-violet-800">
               <Bot size={24} aria-hidden="true" />
             </div>

@@ -1,3 +1,129 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Independent look: an airy lavender path for understanding the subscriber journey. */
+.journey-refresh {
+  background: radial-gradient(circle at 100% 4%, #f0eaff 0%, transparent 30rem),
+              radial-gradient(circle at 4% 74%, #eee9ff 0%, transparent 34rem),
+              #fbfaff;
+  color: #332a4b;
+}
+.journey-surface {
+  border: 1px solid #e7defa;
+  box-shadow: 0 18px 52px rgba(65, 49, 124, .09);
+}
+.journey-hero, .journey-results-hero {
+  isolation: isolate;
+  color: #33275a;
+  background: linear-gradient(118deg, #faf8ff 0%, #f1ecff 51%, #e9e0fc 100%);
+  border-bottom: 2px solid #ded0fb;
+}
+.journey-hero::before, .journey-results-hero::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  width: 16rem;
+  height: 16rem;
+  right: -8rem;
+  top: -7rem;
+  border: 1.5rem solid rgba(135, 100, 203, .10);
+  border-radius: 50%;
+}
+.journey-hero::after, .journey-results-hero::after {
+  content: '●   ●   ●   ●';
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  bottom: 1rem;
+  right: -.6rem;
+  font-size: 1.65rem;
+  letter-spacing: .65rem;
+  transform: rotate(-22deg);
+  color: rgba(117, 69, 192, .13);
+}
+.journey-eyebrow {
+  border: 1px solid #d8c7f8;
+  border-radius: 999px;
+  background: white;
+  color: #6440a4;
+  padding: .52rem .82rem;
+  box-shadow: 0 3px 10px rgba(80, 47, 134, .045);
+}
+.journey-heading { color: #30264e; }
+.journey-description { color: #665678; }
+.journey-note {
+  background: #f7f3ff;
+  border: 1px solid #e5dcfa;
+  box-shadow: 0 4px 16px rgba(97, 66, 151, .055);
+}
+.journey-situation {
+  background: white;
+  border-color: #e7e2f0;
+  box-shadow: 0 6px 22px rgba(80, 62, 133, .047);
+}
+.journey-situation:hover { border-color: #ab96da; }
+.journey-situation-marked {
+  border-color: #8663c9;
+  background: #f8f5ff;
+  box-shadow: 0 8px 25px rgba(108, 77, 176, .11);
+}
+.journey-choice:hover { background: #faf8ff; }
+.journey-details-toggle { color: #50368a; background: #f4f0ff; }
+.journey-details-toggle:hover { background: #eae1ff; }
+.journey-details-arrow {
+  background: #6846b2;
+  box-shadow: 0 3px 9px rgba(97, 64, 169, .17);
+}
+.journey-action-bar {
+  background: rgba(255,255,255,.96);
+  border: 1px solid #ded2f6;
+  box-shadow: 0 12px 34px rgba(91, 71, 137, .12);
+}
+.journey-track { position: relative; max-width: 11.5rem; }
+.journey-track::before {
+  content: '';
+  position: absolute;
+  height: 3px;
+  background: #e4d7f4;
+  top: calc(50% - 1.5px);
+  left: .5rem;
+  right: .5rem;
+}
+.journey-track-dot {
+  z-index: 1;
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid #cfc1ed;
+  box-shadow: 0 0 0 2px white;
+}
+.journey-track-dot.is-marked {
+  background: #714bc4;
+  border-color: #714bc4;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #ede5ff;
+}
+.journey-action-button {
+  background: linear-gradient(115deg, #7546c6, #8f5cdb);
+  box-shadow: 0 5px 17px rgba(92, 62, 161, .2);
+  transition: background .2s, transform .2s;
+}
+.journey-action-button:hover { background: linear-gradient(115deg, #623bb1, #8050ca); transform: translateY(-1px); }
+.journey-result-card {
+  border-color: #e3d8f9;
+  background: linear-gradient(135deg, #faf8ff, #f2edff);
+}
+.journey-invite-card {
+  border-color: #e8dafa;
+  box-shadow: 0 10px 28px rgba(98, 77, 157, .07);
+}
+@media (max-width: 520px) {
+ .journey-hero::before, .journey-results-hero::before { right: -10rem; }
+ .journey-hero::after, .journey-results-hero::after { right: -3.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .journey-action-button { transition: none; }
+}

@@ -17,23 +17,23 @@ const ChecklistScreen = ({ initialSelected, onSubmit }: ChecklistScreenProps) =>
   };
 
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-6 md:py-12">
-      <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
-        <header className="bg-gradient-to-r from-violet-700 to-violet-900 p-6 text-violet-50 md:p-10">
-          <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-violet-100">
+    <main className="journey-page container mx-auto max-w-3xl px-4 py-6 md:py-12">
+      <div className="journey-surface overflow-hidden rounded-[28px] bg-white">
+        <header className="journey-hero relative overflow-hidden p-6 md:p-10">
+          <div className="journey-eyebrow mb-4 inline-flex items-center gap-2 text-sm font-bold">
             <Bot size={20} aria-hidden="true" />
             Для нутрициологов · 5 ситуаций
           </div>
-          <h1 className="font-serif text-3xl font-bold leading-tight md:text-4xl">
+          <h1 className="journey-heading max-w-xl font-serif text-3xl font-bold leading-tight md:text-[42px]">
             Куда пропадают подписчики после знакомства с твоим ботом?
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-violet-50">
+          <p className="journey-description mt-4 max-w-xl text-lg leading-relaxed">
             Подписчики запускают бота, забирают материалы, но потом исчезают? Отметь знакомые ситуации — и получи примеры, что можно улучшить.
           </p>
         </header>
 
         <div className="p-5 md:p-8">
-          <div className="mb-6 rounded-xl border border-violet-200 bg-violet-50 p-4 text-slate-800">
+          <div className="journey-note mb-7 rounded-2xl p-5 text-slate-800">
             <p className="font-semibold">Узнала ситуацию в своём боте? Отметь галочкой.</p>
             <p className="mt-1 text-sm">
               Если не уверена, открой пример и три коротких вопроса под карточкой.
@@ -44,11 +44,11 @@ const ChecklistScreen = ({ initialSelected, onSubmit }: ChecklistScreenProps) =>
           <div className="space-y-4">
             {checklistItems.map((item, index) => (
               <article key={item.title}
-                className={'overflow-hidden rounded-2xl border-2 transition-colors ' +
+                className={'journey-situation overflow-hidden rounded-2xl border-2 transition-all ' +
                   (selectedItems.includes(index)
-                    ? 'border-violet-500 bg-violet-50/50'
+                    ? 'journey-situation-marked border-violet-500 bg-violet-50/50'
                     : 'border-slate-200 bg-white')}>
-                <label className="flex cursor-pointer items-start gap-3 px-4 py-5 md:px-5">
+                <label className="journey-choice flex cursor-pointer items-start gap-3 px-4 py-5 md:px-5">
                   <input
                     type="checkbox"
                     checked={selectedItems.includes(index)}
@@ -59,14 +59,14 @@ const ChecklistScreen = ({ initialSelected, onSubmit }: ChecklistScreenProps) =>
                   <span className="text-lg font-semibold leading-snug text-slate-900">{item.title}</span>
                 </label>
 
-                <details className="group border-t border-violet-100">
-                  <summary className="flex list-none cursor-pointer items-center justify-between gap-3 bg-violet-100 px-4 py-3.5 text-violet-950 transition-colors hover:bg-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-violet-700 [&::-webkit-details-marker]:hidden">
+                <details className="journey-example-details group border-t border-violet-100">
+                  <summary className="journey-details-toggle flex list-none cursor-pointer items-center justify-between gap-3 px-4 py-3.5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-violet-700 [&::-webkit-details-marker]:hidden">
                     <span className="min-w-0">
                       <span className="block font-bold group-open:hidden">Открыть пример и вопросы</span>
                       <span className="hidden font-bold group-open:block">Свернуть пример и вопросы</span>
                       <span className="block text-xs text-violet-900 group-open:hidden">Короткий пример и признаки проблемы</span>
                     </span>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-700 text-white">
+                    <span className="journey-details-arrow flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white">
                       <ChevronDown size={21} aria-hidden="true" className="transition-transform group-open:rotate-180" />
                     </span>
                   </summary>
@@ -98,10 +98,17 @@ const ChecklistScreen = ({ initialSelected, onSubmit }: ChecklistScreenProps) =>
             ))}
           </div>
 
-          <div className="sticky bottom-3 z-10 mt-7 flex flex-col items-center justify-between gap-3 rounded-xl border border-violet-200 bg-white/95 p-4 shadow-xl backdrop-blur sm:flex-row">
-            <p className="text-sm font-medium text-slate-700">Отмечено: {selectedItems.length} из {checklistItems.length}</p>
+          <div className="journey-action-bar sticky bottom-3 z-10 mt-7 flex flex-col items-center justify-between gap-3 rounded-2xl p-4 backdrop-blur sm:flex-row">
+            <div className="w-full sm:w-auto">
+              <p className="text-sm font-semibold text-[#55447c]">Отмечено: {selectedItems.length} из {checklistItems.length}</p>
+              <div role="meter" aria-label="Отмеченные ситуации" aria-valuemin={0} aria-valuemax={checklistItems.length} aria-valuenow={selectedItems.length} className="journey-track mt-3 flex items-center justify-between gap-2">
+                {checklistItems.map((item, index) => (
+                  <span key={item.title} className={'journey-track-dot ' + (selectedItems.includes(index) ? 'is-marked' : '')} />
+                ))}
+              </div>
+            </div>
             <button type="button" onClick={() => onSubmit([...selectedItems].sort((a, b) => a - b))}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-700 px-6 py-3 font-semibold text-white hover:bg-violet-800 sm:w-auto">
+              className="journey-action-button flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-white sm:w-auto">
               <CheckCircle2 size={20} aria-hidden="true" /> Получить рекомендации
             </button>
           </div>

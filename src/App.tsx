@@ -13,7 +13,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-violet-50 font-sans">
+    <div className="journey-refresh min-h-screen font-sans">
       {currentScreen === 'checklist' && (
         <ChecklistScreen
           initialSelected={selectedItems}
